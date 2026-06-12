@@ -17,5 +17,3 @@ Features:
 - Track portfolio value, net worth, and gain/loss
 - Simulated live price movement every 5 seconds while the market is open
 - Activity feed and localStorage persistence
-
-No backend required. Just open the file in a browser.
