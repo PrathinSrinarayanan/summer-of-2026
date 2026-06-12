@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Stock | Fake Stock Simulator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div id="marketClock" class="market-clock">
+      <span class="market-clock-time">UTC --:--:--</span>
+      <div class="market-clock-tooltip">
+        <table>
+          <tr><th colspan="2">Market Hours</th></tr>
+          <tr><td>Opens:</td><td>05:00 UTC</td></tr>
+          <tr><td>Closes:</td><td>22:00 UTC</td></tr>
+        </table>
+      </div>
+    </div>
+    <header>
+      <h1>Create Fake Stock</h1>
+      <p>Add new fake companies to the market and watch them trade.</p>
+      <nav class="main-nav">
+        <a href="market.html">Market</a>
+        <a href="trade.html">Trade</a>
+        <a href="create.html">Create Stock</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="settings.html">Settings</a>
+        <a href="#" id="logoutBtn" style="color: var(--danger);">Logout</a>
+      </nav>
+    </header>
+
+    <section class="panel">
+      <h2>Create Fake Stock</h2>
+      <form id="createForm">
+        <label for="newTicker">Ticker</label>
+        <input id="newTicker" maxlength="5" required />
+        <label for="newName">Company Name</label>
+        <input id="newName" maxlength="30" required />
+        <label for="newPrice">Starting Price</label>
+        <input id="newPrice" type="number" min="1" step="0.01" value="10" required />
+        <button type="submit">Create Stock</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>Activity Feed</h2>
+      <div id="activityFeed" class="feed"></div>
+    </section>
+
+    <footer>
+      <p>Created stocks appear in the market and can be traded immediately.</p>
+    </footer>
+  </div>
+  <script src="script.js"></script>
+  <script>
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) logoutBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      localStorage.removeItem('userLoggedIn');
+      localStorage.removeItem('loginProvider');
+      localStorage.removeItem('userEmail');
+      sessionStorage.removeItem('userLoggedIn');
+      sessionStorage.removeItem('loginProvider');
+      sessionStorage.removeItem('userEmail');
+      window.location.href='login.html';
+    });
+  </script>
+</body>
+</html>

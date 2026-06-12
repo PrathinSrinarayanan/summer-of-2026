@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trade Stocks | Fake Stock Simulator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div id="marketClock" class="market-clock">
+      <span class="market-clock-time">UTC --:--:--</span>
+      <div class="market-clock-tooltip">
+        <table>
+          <tr><th colspan="2">Market Hours</th></tr>
+          <tr><td>Opens:</td><td>05:00 UTC</td></tr>
+          <tr><td>Closes:</td><td>22:00 UTC</td></tr>
+        </table>
+      </div>
+    </div>
+    <header>
+      <h1>Trade Stocks</h1>
+      <p>Buy and sell shares using current market prices.</p>
+      <nav class="main-nav">
+        <a href="market.html">Market</a>
+        <a href="trade.html">Trade</a>
+        <a href="create.html">Create Stock</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="settings.html">Settings</a>
+        <a href="#" id="logoutBtn" style="color: var(--danger);">Logout</a>
+      </nav>
+    </header>
+
+    <section class="top-panel">
+      <div class="summary-card">
+        <h2>Cash Balance</h2>
+        <div id="cashBalance">$0.00</div>
+      </div>
+      <div class="summary-card">
+        <h2>Portfolio Value</h2>
+        <div id="portfolioValue">$0.00</div>
+      </div>
+      <div class="summary-card">
+        <h2>Net Worth</h2>
+        <div id="netWorth">$0.00</div>
+      </div>
+      <div class="summary-card market-status-card" id="marketStatus">Loading market status...</div>
+    </section>
+
+    <section class="panel-grid">
+      <div class="panel form-panel">
+        <h2>Buy Stocks</h2>
+        <form id="buyForm">
+          <label for="buyTicker">Stock</label>
+          <select id="buyTicker"></select>
+          <label for="buyShares">Shares</label>
+          <input id="buyShares" type="number" min="1" value="1" required />
+          <button type="submit">Buy</button>
+        </form>
+      </div>
+      <div class="panel form-panel">
+        <h2>Sell Stocks</h2>
+        <form id="sellForm">
+          <label for="sellTicker">Portfolio Stock</label>
+          <select id="sellTicker"></select>
+          <label for="sellShares">Shares</label>
+          <input id="sellShares" type="number" min="1" value="1" required />
+          <button type="submit">Sell</button>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <p>Your trading page uses the same market prices as the Market Stocks page.</p>
+    </footer>
+  </div>
+  <script src="script.js"></script>
+  <script>
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) logoutBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      localStorage.removeItem('userLoggedIn');
+      localStorage.removeItem('loginProvider');
+      localStorage.removeItem('userEmail');
+      sessionStorage.removeItem('userLoggedIn');
+      sessionStorage.removeItem('loginProvider');
+      sessionStorage.removeItem('userEmail');
+      window.location.href='login.html';
+    });
+  </script>
+</body>
+</html>
